@@ -4,7 +4,7 @@ import { Calendar } from "./calendar/pages/Calendar";
 import { AuthRoutes } from "./auth/routes/AuthRoutes";
 
 function App() {
-  const authStatus = "not-authenticated";
+  const authStatus = "authenticated";
   return (
     <Routes>
       {authStatus === "not-authenticated" ? (
