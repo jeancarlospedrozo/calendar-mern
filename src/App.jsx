@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Calendar from "./calendar/pages/Calendar";
+import { Calendar } from "./calendar/pages/Calendar";
 import { AuthRoutes } from "./auth/routes/AuthRoutes";
 
 function App() {

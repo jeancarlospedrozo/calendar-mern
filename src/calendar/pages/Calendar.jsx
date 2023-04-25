@@ -1,7 +1,10 @@
 import React from "react";
+import { Navbar } from "../components/Navbar";
 
-const Calendar = () => {
-  return <div>Calendar</div>;
+export const Calendar = () => {
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 };
-
-export default Calendar;
