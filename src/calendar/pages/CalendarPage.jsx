@@ -5,8 +5,11 @@ import { addHours } from "date-fns";
 import { getMessagesES, localizer } from "../../helpers/helpers";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { CalendarEvent } from "../components/CalendarEvent";
+import { Modal } from "../components/Modal";
 
 export const CalendarPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "week"
   );
@@ -36,6 +39,14 @@ export const CalendarPage = () => {
     localStorage.setItem("lastView", e);
   };
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <Navbar />
@@ -49,12 +60,13 @@ export const CalendarPage = () => {
         style={{ height: "calc(100vh - 80px)", marginTop: 80 }}
         messages={getMessagesES()}
         onDoubleClickEvent={onDoubleClick}
-        onSelectEvent={onSelect}
+        onSelectEvent={openModal}
         onView={onViewChange}
         components={{
           event: CalendarEvent,
         }}
       />
+      <Modal isVisible={isOpen} onClose={closeModal} />
     </>
   );
 };
