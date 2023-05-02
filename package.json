@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "date-fns": "^2.29.3",
+    "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-big-calendar": "^1.6.9",
+    "react-datepicker": "^4.11.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0"
   },
