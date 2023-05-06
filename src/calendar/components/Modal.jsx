@@ -1,12 +1,11 @@
 import { addHours } from "date-fns";
 import es from "date-fns/locale/es";
-import { Field, Form, Formik, useFormikContext } from "formik";
-import React, { useState } from "react";
+import { Field, Form, Formik } from "formik";
+import React from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const Modal = ({ isVisible, onClose }) => {
-  const [startDate, setStartDate] = useState(new Date());
   if (!isVisible) return null;
 
   registerLocale("es", es);
