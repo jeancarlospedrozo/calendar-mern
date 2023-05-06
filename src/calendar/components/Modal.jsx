@@ -1,7 +1,7 @@
 import { addHours } from "date-fns";
 import es from "date-fns/locale/es";
 import { Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 

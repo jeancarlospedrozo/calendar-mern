@@ -6,9 +6,10 @@ import { getMessagesES, localizer } from "../../helpers/helpers";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { CalendarEvent } from "../components/CalendarEvent";
 import { Modal } from "../components/Modal";
+import { useUiStore } from "../../hooks/useUiStore";
 
 export const CalendarPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isDateModalOpen, _onDateModalOpen, _onDateModalClose } = useUiStore();
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "week"
@@ -27,10 +28,6 @@ export const CalendarPage = () => {
     },
   ];
 
-  const onDoubleClick = (e) => {
-    console.log({ doubleClick: e });
-  };
-
   const onSelect = (e) => {
     console.log({ onSelect: e });
   };
@@ -40,11 +37,11 @@ export const CalendarPage = () => {
   };
 
   const openModal = () => {
-    setIsOpen(true);
+    _onDateModalOpen();
   };
 
   const closeModal = () => {
-    setIsOpen(false);
+    _onDateModalClose();
   };
 
   return (
@@ -59,14 +56,14 @@ export const CalendarPage = () => {
         endAccessor="end"
         style={{ height: "calc(100vh - 80px)", marginTop: 80 }}
         messages={getMessagesES()}
-        onDoubleClickEvent={onDoubleClick}
-        onSelectEvent={openModal}
+        onDoubleClickEvent={openModal}
+        onSelectEvent={onSelect}
         onView={onViewChange}
         components={{
           event: CalendarEvent,
         }}
       />
-      <Modal isVisible={isOpen} onClose={closeModal} />
+      <Modal isVisible={isDateModalOpen} onClose={closeModal} />
     </>
   );
 };

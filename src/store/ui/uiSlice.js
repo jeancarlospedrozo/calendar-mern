@@ -8,13 +8,16 @@ export const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
-    increment: (state) => {
+    onDateModalOpen: (state) => {
       state.isDateModalOpen = true;
+    },
+    onDateModalClose: (state) => {
+      state.isDateModalOpen = false;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = uiSlice.actions;
+export const { onDateModalOpen, onDateModalClose } = uiSlice.actions;
 
 export default uiSlice.reducer;
