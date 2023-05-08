@@ -7,26 +7,28 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { CalendarEvent } from "../components/CalendarEvent";
 import { Modal } from "../components/Modal";
 import { useUiStore } from "../../hooks/useUiStore";
+import { useCalendarStore } from "../../hooks/useCalendarStore";
 
 export const CalendarPage = () => {
   const { isDateModalOpen, _onDateModalOpen, _onDateModalClose } = useUiStore();
+  const { events } = useCalendarStore();
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "week"
   );
 
-  const events = [
-    {
-      title: "Cumpleaños",
-      note: "Comprar la decoración",
-      start: new Date(),
-      end: addHours(new Date(), 1),
-      user: {
-        id: "1",
-        name: "Jean Carlos",
-      },
-    },
-  ];
+  // const events = [
+  //   {
+  //     title: "Cumpleaños",
+  //     note: "Comprar la decoración",
+  //     start: new Date(),
+  //     end: addHours(new Date(), 1),
+  //     user: {
+  //       id: "1",
+  //       name: "Jean Carlos",
+  //     },
+  //   },
+  // ];
 
   const onSelect = (e) => {
     console.log({ onSelect: e });
