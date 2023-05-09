@@ -1,20 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
+import { onSetActiveEvent } from "../store/calendar/calendarSlice";
 
 export const useCalendarStore = () => {
   const dispatch = useDispatch();
-  const { events } = useSelector((state) => state.calendar);
+  const { events, activeEvent } = useSelector((state) => state.calendar);
 
-  const _onDateModalOpen = () => {
-    dispatch(onDateModalOpen());
-  };
-
-  const _onDateModalClose = () => {
-    dispatch(onDateModalClose());
+  const _onSetActiveEvent = (calendarEvent) => {
+    dispatch(onSetActiveEvent(calendarEvent));
   };
 
   return {
     events,
-    // _onDateModalOpen,
-    // _onDateModalClose,
+    activeEvent,
+    _onSetActiveEvent,
   };
 };

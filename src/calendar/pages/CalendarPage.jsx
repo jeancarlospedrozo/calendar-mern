@@ -11,27 +11,14 @@ import { useCalendarStore } from "../../hooks/useCalendarStore";
 
 export const CalendarPage = () => {
   const { isDateModalOpen, _onDateModalOpen, _onDateModalClose } = useUiStore();
-  const { events } = useCalendarStore();
+  const { events, _onSetActiveEvent } = useCalendarStore();
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "week"
   );
 
-  // const events = [
-  //   {
-  //     title: "Cumpleaños",
-  //     note: "Comprar la decoración",
-  //     start: new Date(),
-  //     end: addHours(new Date(), 1),
-  //     user: {
-  //       id: "1",
-  //       name: "Jean Carlos",
-  //     },
-  //   },
-  // ];
-
   const onSelect = (e) => {
-    console.log({ onSelect: e });
+    _onSetActiveEvent(e);
   };
 
   const onViewChange = (e) => {
@@ -54,8 +41,8 @@ export const CalendarPage = () => {
         culture="es"
         localizer={localizer}
         events={events}
-        startAccessor="start"
-        endAccessor="end"
+        startAccessor="startDate"
+        endAccessor="endDate"
         style={{ height: "calc(100vh - 80px)", marginTop: 80 }}
         messages={getMessagesES()}
         onDoubleClickEvent={openModal}

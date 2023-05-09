@@ -1,21 +1,34 @@
 import { addHours } from "date-fns";
 import es from "date-fns/locale/es";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, useFormikContext } from "formik";
 import React, { useEffect } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useCalendarStore } from "../../hooks/useCalendarStore";
+
+const AutoSubmitToken = () => {
+  const values = useFormikContext();
+  console.log(values);
+};
 
 export const Modal = ({ isVisible, onClose }) => {
-  if (!isVisible) return null;
-
+  const { activeEvent } = useCalendarStore();
   registerLocale("es", es);
 
   const formValues = {
-    title: "",
-    notes: "",
+    _id: "",
+    title: "hola",
+    notes: "fdfdfdfdfdf",
     startDate: new Date(),
     endDate: addHours(new Date(), 2),
+    user: {
+      _id: "",
+      name: "",
+    },
   };
+
+  const initialValues = activeEvent === null ? formValues : activeEvent;
+  if (!isVisible) return null;
 
   return (
     <div
@@ -52,8 +65,9 @@ export const Modal = ({ isVisible, onClose }) => {
               Nuevo evento
             </h3>
             <Formik
-              initialValues={formValues}
+              initialValues={initialValues}
               onSubmit={(values) => console.log(values)}
+              enableReinitialize
             >
               {({ values, setFieldValue }) => (
                 <Form className="space-y-6">
@@ -115,6 +129,7 @@ export const Modal = ({ isVisible, onClose }) => {
                   >
                     Guardar
                   </button>
+                  <AutoSubmitToken />
                 </Form>
               )}
             </Formik>

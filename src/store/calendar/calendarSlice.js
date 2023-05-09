@@ -2,12 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { addHours } from "date-fns";
 
 const tempEvents = {
+  _id: new Date().getTime(),
   title: "Cumpleaños",
-  note: "Comprar la decoración",
-  start: new Date(),
-  end: addHours(new Date(), 1),
+  notes: "Comprar la decoración",
+  startDate: new Date(),
+  endDate: addHours(new Date(), 2),
   user: {
-    id: "1",
+    _id: "1",
     name: "Jean Carlos",
   },
 };
@@ -21,16 +22,13 @@ export const calendarSlice = createSlice({
   name: "calendar",
   initialState,
   reducers: {
-    onDateModalOpen: (state) => {
-      state.isDateModalOpen = true;
-    },
-    onDateModalClose: (state) => {
-      state.isDateModalOpen = false;
+    onSetActiveEvent: (state, action) => {
+      state.activeEvent = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { onDateModalOpen, onDateModalClose } = calendarSlice.actions;
+export const { onSetActiveEvent } = calendarSlice.actions;
 
 export default calendarSlice.reducer;
