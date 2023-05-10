@@ -6,19 +6,14 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
 
-const AutoSubmitToken = () => {
-  const values = useFormikContext();
-  console.log(values);
-};
-
 export const Modal = ({ isVisible, onClose }) => {
   const { activeEvent } = useCalendarStore();
   registerLocale("es", es);
 
   const formValues = {
     _id: "",
-    title: "hola",
-    notes: "fdfdfdfdfdf",
+    title: "",
+    notes: "",
     startDate: new Date(),
     endDate: addHours(new Date(), 2),
     user: {
@@ -129,7 +124,6 @@ export const Modal = ({ isVisible, onClose }) => {
                   >
                     Guardar
                   </button>
-                  <AutoSubmitToken />
                 </Form>
               )}
             </Formik>

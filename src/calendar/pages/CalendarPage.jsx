@@ -8,6 +8,7 @@ import { CalendarEvent } from "../components/CalendarEvent";
 import { Modal } from "../components/Modal";
 import { useUiStore } from "../../hooks/useUiStore";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
+import { FabAddNew } from "../components/FabAddNew";
 
 export const CalendarPage = () => {
   const { isDateModalOpen, _onDateModalOpen, _onDateModalClose } = useUiStore();
@@ -53,6 +54,7 @@ export const CalendarPage = () => {
         }}
       />
       <Modal isVisible={isDateModalOpen} onClose={closeModal} />
+      <FabAddNew />
     </>
   );
 };
