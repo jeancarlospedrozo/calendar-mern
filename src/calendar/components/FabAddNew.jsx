@@ -5,10 +5,10 @@ import { addHours } from "date-fns";
 
 export const FabAddNew = () => {
   const { _onDateModalOpen } = useUiStore();
-  const { _onSetActiveEvent } = useCalendarStore();
+  const { _setActiveEvent } = useCalendarStore();
 
   const openModal = () => {
-    _onSetActiveEvent({
+    _setActiveEvent({
       title: "",
       notes: "",
       startDate: new Date(),

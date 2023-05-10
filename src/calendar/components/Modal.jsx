@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
 
 export const Modal = ({ isVisible, onClose }) => {
-  const { activeEvent } = useCalendarStore();
+  const { activeEvent, _addNewEvent } = useCalendarStore();
   registerLocale("es", es);
 
   const formValues = {
@@ -61,7 +61,10 @@ export const Modal = ({ isVisible, onClose }) => {
             </h3>
             <Formik
               initialValues={initialValues}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={(values) => {
+                _addNewEvent(values);
+                onClose();
+              }}
               enableReinitialize
             >
               {({ values, setFieldValue }) => (

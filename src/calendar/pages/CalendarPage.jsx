@@ -12,14 +12,14 @@ import { FabAddNew } from "../components/FabAddNew";
 
 export const CalendarPage = () => {
   const { isDateModalOpen, _onDateModalOpen, _onDateModalClose } = useUiStore();
-  const { events, _onSetActiveEvent } = useCalendarStore();
+  const { events, _setActiveEvent } = useCalendarStore();
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "week"
   );
 
   const onSelect = (e) => {
-    _onSetActiveEvent(e);
+    _setActiveEvent(e);
   };
 
   const onViewChange = (e) => {
