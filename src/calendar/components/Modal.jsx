@@ -22,6 +22,11 @@ export const Modal = ({ isVisible, onClose }) => {
     },
   };
 
+  const handleSubmit = (values) => {
+    _addNewEvent(values);
+    onClose();
+  };
+
   const initialValues = activeEvent === null ? formValues : activeEvent;
   if (!isVisible) return null;
 
@@ -61,10 +66,7 @@ export const Modal = ({ isVisible, onClose }) => {
             </h3>
             <Formik
               initialValues={initialValues}
-              onSubmit={(values) => {
-                _addNewEvent(values);
-                onClose();
-              }}
+              onSubmit={(values) => handleSubmit(values)}
               enableReinitialize
             >
               {({ values, setFieldValue }) => (
