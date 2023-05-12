@@ -7,4 +7,8 @@ export const store = configureStore({
     ui: uiSlice,
     calendar: calendarSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

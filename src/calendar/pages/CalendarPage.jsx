@@ -9,10 +9,11 @@ import { Modal } from "../components/Modal";
 import { useUiStore } from "../../hooks/useUiStore";
 import { useCalendarStore } from "../../hooks/useCalendarStore";
 import { FabAddNew } from "../components/FabAddNew";
+import { FabDelete } from "../components/FabDelete";
 
 export const CalendarPage = () => {
   const { isDateModalOpen, _onDateModalOpen, _onDateModalClose } = useUiStore();
-  const { events, _setActiveEvent } = useCalendarStore();
+  const { events, activeEvent, _setActiveEvent } = useCalendarStore();
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "week"
@@ -55,6 +56,7 @@ export const CalendarPage = () => {
       />
       <Modal isVisible={isDateModalOpen} onClose={closeModal} />
       <FabAddNew />
+      <FabDelete />
     </>
   );
 };
